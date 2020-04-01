@@ -4,16 +4,24 @@ module.exports = {
   async index(req, res) {
     const { page = 1 } = req.query;
 
+    const [count] = await connection('incidents').count();
+    res.header('X-Total-Count', count['count(*)'])
+    
+    if(page === 'all') {
+      const incidents = await connection('incidents')
+        .join('ongs', 'ongs.id', '=', 'incidents.ong_id')
+        .select(['incidents.*', 'ongs.name', 'ongs.email', 'ongs.whatsapp', 'ongs.city', 'ongs.uf']);
+
+      return res.json(incidents)
+      }
+
     const incidents = await connection('incidents')
       .join('ongs', 'ongs.id', '=', 'incidents.ong_id')
       .limit(5)
       .offset((page - 1) * 5)
       .select(['incidents.*', 'ongs.name', 'ongs.email', 'ongs.whatsapp', 'ongs.city', 'ongs.uf']);
     
-    const [count,] = await connection('incidents').count();
-    res.header('X-Total-Count', count['count(*)'] - 1)
-    //console.log({ counti: count, countasterico: count['count(*)'] })
-    
+
     return res.json(incidents)
   },
 
@@ -21,14 +29,22 @@ module.exports = {
     const { title, description, value } = req.body;
     const ong_id = req.headers.authorization;
 
-    const [id] = await connection('incidents').insert({
+    try {
+      const [id] = await connection('incidents').insert({
       title,
       description,
       value,
       ong_id,
-    })
 
-    return res.json({ id })
+      });
+
+      return res.json({ id })
+
+    } catch (error) {
+      
+    }
+
+    
   },
 
   async delete(req, res) {
@@ -39,6 +55,10 @@ module.exports = {
       .where('id', id)
       .select('ong_id')
       .first();
+
+    if(!incident) {
+      return res.status(400).json({ error: 'This incident does not exist.' })
+    }
 
     if (incident.ong_id !== ong_id) {
       return res.status(401).json({ error: 'Operation unauthorized.' })

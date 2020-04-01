@@ -17,6 +17,8 @@ export default function Incidents() {
 
     const navigation = useNavigation();
 
+    const [refreshing, setRefreshing] = useState(false)
+
     function navigateToDetail(incident) {
         navigation.navigate('Detail', { incident });
     }
@@ -25,25 +27,47 @@ export default function Incidents() {
         if(loading) {
             return;
         }
-        if(totalIncidents > 0 && incidents.lenght === totalIncidents) {
+        if(totalIncidents > 0 && incidents.length === totalIncidents) {
             return;
         }
 
         setLoading(true);
-
+        
         const response = await api.get('incidents', {
-            params: { page }
+            params: { page: page }
+
         });
 
+
         setIncidents([...incidents, ...response.data]);
+
+        
+
         setTotalIncidents(response.headers['x-total-count']);
-        setPage(page + 1);
         setLoading(false);
+        setPage(page + 1);
+        
     }
 
     useEffect(() => {
         loadIncidents();
     }, [])
+
+    
+    async function handleRefresh() {
+        setRefreshing(true)
+
+        const allDevs = await api.get('incidents', {
+            params: {
+                page: 'all'
+            }
+        })
+        setIncidents(allDevs.data)
+        console.log(allDevs.data)
+
+
+        setRefreshing(false)
+    }
 
     return (
         <View style={styles.container}>
@@ -64,6 +88,9 @@ export default function Incidents() {
                 onEndReached={loadIncidents}
                 onEndReachedThreshold={0.2}
                 keyExtractor={incident => String(incident.id)}
+                refreshing={refreshing}
+                onRefresh={handleRefresh}
+            
 
                 renderItem={({ item: incident }) => (
                 <View style={styles.incident}>
