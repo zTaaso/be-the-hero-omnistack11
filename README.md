@@ -12,7 +12,9 @@
 <br>
 
 ### :rocket: Tecnologias usadas
+
 Este maravilindo projeto foi desenvolvido com as seguintes tecnologias:
+
 - [Node.js](https://nodejs.org/en/)
 - [Expo](https://expo.io/)
 - [Express](https://expressjs.com/pt-br/)
@@ -25,9 +27,10 @@ Este maravilindo projeto foi desenvolvido com as seguintes tecnologias:
 
 ### :muscle: Projeto
 
-<b>Be the Hero</b> é um projeto que visa ajudar, de maneira <b>financeira</b> uma instituição de caridade, ajudando a mesma se manter. 
+<b>Be the Hero</b> é um projeto que visa ajudar, de maneira <b>financeira</b> uma instituição de caridade, ajudando a mesma se manter.
 
 ### 🦸‍♂️ Qual a importância de ajudar uma ONG? <br>
+
 As organizações não governamentais <b>(ONGs)</b> são entidades privadas da sociedade civil, sem fins lucrativos, cujo propósito é defender e promover uma causa. Essa causa pode ser virtualmente de qualquer tipo: <b>direitos humanos</b>, <b>direitos animais</b>, <b>direitos indígenas</b>, <b>gênero</b>, <b>luta contra o racismo</b>, <b>meio ambiente</b>, <b>questões urbanas</b>, <b>imigrantes</b>, entre muitos outros.
 
 ### :recycle: Como contribuir
@@ -43,12 +46,12 @@ A semana foi ministrada pelo <b>Mestre Jedi</b> [Diego Fernandes](https://github
 
 ### :memo: Licença
 
-Esse projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
+Esse projeto está sob a licença MIT. Veja o arquivo [LICENSE](./LICENSE) para mais detalhes.
 
 ### :muscle: Quem deu aquela força para não desistir?
 
 O pessoal da He4rt Developers e da Rocketseat deram aquela mão quando as coisas ficaram ruins e me salvaram, sem me deixar desistir!
-Entrem na [comunidade da He4rt Developers](https://discord.gg/8mA4CM2) e [na comunidade da Rocketseat :rocket:](https://discordapp.com/invite/gCRAFhc) 
+Entrem na [comunidade da He4rt Developers](https://discord.gg/8mA4CM2) e [na comunidade da Rocketseat :rocket:](https://discordapp.com/invite/gCRAFhc)
 
 ---
 
